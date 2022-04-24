@@ -1,1 +1,35 @@
-<div>Masukkan HTML anda di sini</div>
+<style>
+        .container{
+                margin-top: 30px;
+                border: solid 1px rgba(0, 0, 0, 0.267);
+                padding: 40px;
+                width: 400px;
+                text-align: center;
+                line-height: 2;
+                /* max-width: 100px; */
+        }
+            .line {
+                display: inline-block;
+                width: 100%;
+                border-top: 0.2px solid rgba(0, 0, 0, 0.267);
+                margin-bottom: 20px;
+        }
+             button{
+                cursor: unset;
+            }
+    </style>
+
+      <div class="container">
+        <h4>Status Cuti Pegawai</h4><br>
+        <span class="line"></span>
+        <div class="status">
+            <p>Pengajuan cuti Anda sebagai berikut:</p>
+            <p>Tanggal Awal Cuti: <br> 01/01/2002 <br>
+                Tanggal Akhir Cuti: <br> 01/02/2002 <br>
+                Alasan: <br> Sakit / Berobat
+            </p>
+            <button type="button" class="btn btn-warning active">Masih Diproses</button>
+            <button type="button" class="btn btn-success active">Diterima</button>
+            <button type="button" class="btn btn-danger active">Ditolak</button>
+        </div>
+      </div>
