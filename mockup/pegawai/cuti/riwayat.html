@@ -1,1 +1,66 @@
-<div>Masukkan HTML anda di sini</div>
+<style>
+  td a{
+    text-decoration: none;
+    color: black;
+    opacity: 0.7;
+  }
+  td a:hover{
+    color: black;
+    opacity: 1;
+  }
+  .container{
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    padding: 40px 0px 40px 0px;
+    margin-top: 40px;
+    line-height: 2;
+    border: solid 1px rgba(0, 0, 0, 0.267);
+}
+.line {
+    display: inline-block;
+    width: 90%;
+    border-top: 0.2px solid rgba(0, 0, 0, 0.267);
+    margin-bottom: 20px;
+}
+
+</style>
+  <div class="container">
+     <h4>Riwayat Cuti Pegawai</h4><br>
+     <span class="line"></span>        
+      <table class="table table-striped table-bordered" style="text-align: center; width:90%; ">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Tanggal Awal Cuti</th>
+            <th scope="col">Tanggal Akhir Cuti</th>
+            <th scope="col">Alasan Cuti</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>01/01/2022</td>
+            <td>01/02/2022</td>
+            <td>Sakit / Berobat</td>
+            <td><a href="status.html"><i class="bi bi-eye"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>01/01/2022</td>
+            <td>01/02/2022</td>
+            <td>Keluarga Meninggal</td>
+            <td><a href="status.html"><i class="bi bi-eye"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>01/01/2022</td>
+            <td>01/02/2022</td>
+            <td>Lainnya</td>
+            <td><a href="status.html"><i class="bi bi-eye"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
