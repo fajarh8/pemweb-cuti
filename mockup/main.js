@@ -6,7 +6,6 @@ var noTemplateMap = {
 var hashMap = {
     'admin.login': 'admin/login.html',
     'admin.dashboard': 'admin/dashboard.html',
-    'admin.statistik': 'admin/statistik.html',
     'admin.pegawai.tambah': 'admin/pegawai/edit.html',
     'admin.pegawai.list': 'admin/pegawai/list.html',
     'admin.pegawai.edit': 'admin/pegawai/edit.html',
