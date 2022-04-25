@@ -28,27 +28,32 @@ $(document).ready(function() {
     if (hash.length > 0) {
         var noTemplate = (typeof(noTemplateMap[hash]) == 'boolean') && noTemplateMap[hash];
         if (noTemplate) {
-            $.get(hashMap[hash], {}, function(html) {
+            $.get(hashMap[hash]).done(function(html) {
                 $('#main-content').html(html);
             });
         } else {
-            var component = hash.match(/^([^.]+)\..+$/)[1];
+            if (typeof(hashMap[hash]) != 'undefined') {
+                var component = hash.match(/^([^.]+)\..+$/)[1];
 
-            $.get(component + '/sidebar.html', {}).done(function(html) {
-                $('.nav-content').html(html);
-                $('.menu-title').text(component.toUpperCase());
+                $.get(component + '/sidebar.html').done(function(html) {
+                    $('.nav-content').html(html);
+                    $('.menu-title').text(component.toUpperCase());
 
-                $('.nav-menu[href="' + location.hash + '"]').addClass('active');
-                $('.nav-menu').on('click', function(e) {
-                    e.preventDefault();
-                    location.assign($(this).attr('href'));
-                    location.reload();
+                    $('.nav-content .nav-menu[href="' + location.hash + '"]').addClass('active');
+
+                    $.get(hashMap[hash]).done(function(html) {
+                        $('#content').html(html);
+                        $('.nav-menu').on('click', function(e) {
+                            e.preventDefault();
+                            location.assign($(this).attr('href'));
+                            location.reload();
+                        });
+                    });
                 });
-            }).always(function() { 
-                $.get(hashMap[hash], {}, function(html) {
-                    $('#content').html(html);
-                });
-            });
+            } else {
+                $('#main-content').html('Page not found');
+            }
         }
     }
 });
+

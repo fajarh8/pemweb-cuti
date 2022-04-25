@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand">
-    <div class="container-fluid navbar-brand">EMPLOYEES(bingung digawe piye maneh)</div>
+    <div class="container-fluid navbar-brand">LIST PEGAWAI</div>
     <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    </form>
 </nav>
 <div class="container table-responsive">
     <table class="table table-striped">
@@ -12,14 +12,24 @@
           <th>NIK</th>
           <th>JENIS KELAMIN</th>
           <th>ALAMAT</th>
-          <th></th>
+          <th>TINDAKAN</th>
       </thead>
       <tbody class="text-center">
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>John Doe</td>
+                <td>33110987654321</td>
+                <td>L</td>
+                <td>New York</td>
+                <td>
+                    <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
+                    <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>Jane Doe</td>
+                <td>33111234567890</td>
+                <td>P</td>
+                <td>Pennsylvania</td>
                 <td>
                     <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
                     <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member"></i>
@@ -45,7 +55,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
   <div class="modal fade" id="edit-member" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -62,7 +72,7 @@
                 </div>
                     <div class="form-floating col-md-4 mb-1">
                         <input type="text" class="form-control" id="nik" placeholder="NIK">
-                        <label for="nik"> NIK</label>
+                        <label for="nik">NIK</label>
                     </div>
                     <div class="form-floating col-md-4 mb-1">
                         <select class="form-select" id="jkelamin" aria-label="JenisKelamin">
