@@ -9,6 +9,7 @@ var hashMap = {
     'admin.pegawai.tambah': 'admin/pegawai/edit.html',
     'admin.pegawai.list': 'admin/pegawai/list.html',
     'admin.pegawai.edit': 'admin/pegawai/edit.html',
+    'admin.cuti.buat': 'admin/cuti/buat.html',
     'admin.cuti.list': 'admin/cuti/list.html',
     'admin.cuti.detail': 'admin/cuti/detail.html',
     'pegawai.login': 'pegawai/login.html',
