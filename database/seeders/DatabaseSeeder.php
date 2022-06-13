@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Departemen;
+use App\Models\Pegawai;
+use App\Models\JenisCuti;
+use App\Models\RiwayatCuti;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +18,96 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $departemen = [];
+        $departemen['marketing'] = Departemen::create([
+            'nama' => 'Marketing',
+            'created_by' => 'seeder'
+        ]);
+        $departemen['humas'] = Departemen::create([
+            'nama' => 'Humas',
+            'created_by' => 'seeder'
+        ]);
+
+        $pegawai = [];
+        $pegawai['alice'] = Pegawai::create([
+            'nik' => $this->randomNik(),
+            'no_induk' => $this->randomNoInduk(),
+            'password' => Hash::make('alice'),
+            'nama' => 'Alice',
+            'alamat' => 'Rumah Alice',
+            'jenis_kelamin' => 'P',
+            'id_departemen' => $departemen['humas']->id,
+            'created_by' => 'seeder'
+        ]);
+        $pegawai['bob'] = Pegawai::create([
+            'nik' => $this->randomNik(),
+            'no_induk' => $this->randomNoInduk(),
+            'password' => Hash::make('bob'),
+            'nama' => 'Bob',
+            'alamat' => 'Rumah Bob',
+            'jenis_kelamin' => 'L',
+            'id_departemen' => $departemen['marketing']->id,
+            'created_by' => 'seeder'
+        ]);
+        $pegawai['charlie'] = Pegawai::create([
+            'nik' => $this->randomNik(),
+            'no_induk' => $this->randomNoInduk(),
+            'password' => Hash::make('charlie'),
+            'nama' => 'Charlie',
+            'alamat' => 'Rumah Charlie',
+            'jenis_kelamin' => 'L',
+            'id_departemen' => $departemen['marketing']->id,
+            'created_by' => 'seeder'
+        ]);
+
+        $jenisCuti = [];
+        $jenisCuti['cuti_tahunan'] = JenisCuti::create([
+            'nama' => 'Cuti Tahunan',
+            'created_by' => 'seeder'
+        ]);
+        $jenisCuti['cuti_krn_alasan_penting'] = JenisCuti::create([
+            'nama' => 'Cuti Karena Alasan Penting',
+            'created_by' => 'seeder'
+        ]);
+
+        RiwayatCuti::create([
+            'id_pegawai' => $pegawai['alice']->id,
+            'id_jenis_cuti' => $jenisCuti['cuti_tahunan']->id,
+            'status_cuti' => 'approved',
+            'path_bukti_pengajuan' => '',
+            'tgl_awal_cuti' => date('Y-m-d H:i:s', time() - 5 * 86400),
+            'tgl_akhir_cuti' => date('Y-m-d H:i:s', time() - 4 * 86400),
+            'created_by' => 'pegawai'
+        ]);
+
+        RiwayatCuti::create([
+            'id_pegawai' => $pegawai['alice']->id,
+            'id_jenis_cuti' => $jenisCuti['cuti_krn_alasan_penting']->id,
+            'status_cuti' => 'pending',
+            'path_bukti_pengajuan' => '',
+            'tgl_awal_cuti' => date('Y-m-d H:i:s'),
+            'tgl_akhir_cuti' => date('Y-m-d H:i:s', time() + 86400),
+            'created_by' => 'pegawai'
+        ]);
+
+        RiwayatCuti::create([
+            'id_pegawai' => $pegawai['bob']->id,
+            'id_jenis_cuti' => $jenisCuti['cuti_krn_alasan_penting']->id,
+            'status_cuti' => 'approved',
+            'path_bukti_pengajuan' => '',
+            'tgl_awal_cuti' => date('Y-m-d H:i:s', time() - 10 * 86400),
+            'tgl_akhir_cuti' => date('Y-m-d H:i:s', time() + 3 * 86400),
+            'created_by' => 'admin'
+        ]);
+    }
+
+    protected function randomNik()
+    {
+        return random_int(1000000000000000, 9000000000000000);
+    }
+
+    protected function randomNoInduk()
+    {
+        return random_int(10000000, 90000000);
     }
 }

@@ -18,9 +18,9 @@ class InitDatabase extends Migration
             $table->string('code', 128);
             $table->text('value');
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -31,9 +31,9 @@ class InitDatabase extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('nama', 128);
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -47,9 +47,9 @@ class InitDatabase extends Migration
             $table->char('jenis_kelamin', 1);
             $table->integer('id_departemen');
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -63,9 +63,9 @@ class InitDatabase extends Migration
             $table->integer('jml_cuti_maksimum');
             $table->integer('jml_cuti_bersama');
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -76,9 +76,9 @@ class InitDatabase extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('nama', 128);
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -92,9 +92,9 @@ class InitDatabase extends Migration
             $table->date('tgl_awal_cuti');
             $table->date('tgl_akhir_cuti');
 
-            $table->string('created_by', 128);
-            $table->string('updated_by', 128);
-            $table->string('deleted_by', 128);
+            $table->string('created_by', 128)->nullable();
+            $table->string('updated_by', 128)->nullable();
+            $table->string('deleted_by', 128)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
