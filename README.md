@@ -31,7 +31,7 @@ Tools yang dibutuhkan:
 
 # Coding Guidelines
 
-Ikuti panduan berikut supaya code yang dihasilkan dapat dimaintain dengan mudah dan bisa selaras satu sama lain. **Jangan memodifikasi code di luar controller yang menjadi jatah/bagian masing-masing**. Jika ingin request library atau function di luar controller untuk membantu kalian memudahkan pengerjaan, bisa beritahu miko supaya dibuatkan function/library tersebut.
+Ikuti panduan berikut supaya code yang dihasilkan dapat dimaintain dengan mudah dan bisa selaras satu sama lain. **Jangan memodifikasi code di luar controller/view yang menjadi jatah/bagian masing-masing**. Jika ingin request library atau function di luar controller untuk membantu kalian memudahkan pengerjaan, bisa beritahu miko supaya dibuatkan function/library tersebut.
 
 ## Controller
 
