@@ -25,8 +25,9 @@ Tools yang dibutuhkan:
 1. Buka terminal atau command prompt
 2. Jalankan perintah `composer update` (harus ada koneksi internet terlebih dahulu)
 3. Buat file **.env** dari template **.env.example** dan ubah kredensial database pada file **.env** sesuai dengan keadaan server masing-masing
-4. Jalankan perintah `php artisan migrate:fresh --seed`
-5. Jalankan perintah `php artisan serve` dan kunjungi URL nya
+4. Jalankan perintah `php artisan key:generate --ansi`
+5. Jalankan perintah `php artisan migrate:fresh --seed`
+6. Jalankan perintah `php artisan serve` dan kunjungi URL nya
 
 # Coding Guidelines
 
@@ -42,7 +43,7 @@ Model sudah terdefinisi dan dihandle oleh miko, termasuk relationship-relationsh
 
 Untuk keseluruhan query basic (CRUD) juga **wajib** menggunakan model ORM, **jangan** query builder.
 
-## Redirection
+## Link dan Redirection
 
 Untuk melakukan redirection, **selalu** gunakan **named route** jangan **URL**. Sebagai contoh:
 
@@ -52,7 +53,18 @@ return redirect()->route('some.route');
 return redirect()->route('some.route', ['param' => 'value']);
 
 // SALAH:
-return redirect()->to('/some/route');
+return redirect('/some/route');
+```
+
+Begitu juga apabila menggunakan link:
+
+```html
+<!-- BENAR: -->
+<a href="{{ route('some.route') }}"></a>
+
+<!-- SALAH: -->
+<a href="{{ url('/some/route') }}">Link</a>
+<a href="/some/route">Link</a>
 ```
 
 Referensi mengenai named route terdapat pada file **routes/web.php**. Lapor ke miko apabila terdapat route yang belum terdefinisi sebagai named route.

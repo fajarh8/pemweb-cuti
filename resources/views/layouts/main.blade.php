@@ -34,6 +34,24 @@
                         </div>
                     </div>
                 </div>
+                @if (!empty(session('status')))
+                    <div class="px-4 py-2">
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <div class="py-2">{{ session('status') }}</div>
+                        </div>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="px-4 py-2">
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            @foreach ($errors->all() as $error)
+                                <div class="py-2">{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div id="content" class="flex-grow-1 p-4">@yield('content')</div>
                 <div class="p-3 text-center">Copyright &copy; 2022, Sistem Manajemen Cuti</div>
             </div>
