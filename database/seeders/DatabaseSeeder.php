@@ -8,6 +8,7 @@ use App\Models\Departemen;
 use App\Models\Pegawai;
 use App\Models\JenisCuti;
 use App\Models\RiwayatCuti;
+use App\Models\Admin;
 
 class DatabaseSeeder extends Seeder
 {
@@ -98,6 +99,12 @@ class DatabaseSeeder extends Seeder
             'tgl_awal_cuti' => date('Y-m-d H:i:s', time() - 10 * 86400),
             'tgl_akhir_cuti' => date('Y-m-d H:i:s', time() + 3 * 86400),
             'created_by' => 'admin'
+        ]);
+
+        Admin::create([
+            'email' => 'root@localhost.localdomain',
+            'password' => Hash::make('root'),
+            'nama' => 'Superuser'
         ]);
     }
 
