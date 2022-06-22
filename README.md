@@ -81,6 +81,32 @@ return redirect()->route('some.route')->with('status', 'Berhasil menyimpan data'
 return redirect()->route('some.route')->withErrors(['error' => 'Gagal menyimpan data']);
 ```
 
+## Authentication
+
+> NOTE : Beri code "use Illuminate\Support\Facades\Auth;" terlebih dahulu supaya code berikut dapat dijalankan
+
+Untuk mendapatkan ID dari **admin** atau **pegawai** yang terlogin, gunakan sintaks berikut (contoh):
+
+```php
+// ID admin
+$idAdmin = Auth::guard('admin')->id();
+
+// ID pegawai
+$idPegawai = Auth::guard('pegawai')->id();
+```
+
+Untuk mendapatkan object/data dari **admin** atau **pegawai** yang terlogin, gunakan sintaks berikut (contoh):
+
+```php
+// Data admin (dalam bentuk model ORM)
+$admin = Auth::guard('admin')->user();
+echo 'Hello, '.$admin->nama;
+
+// Data pegawai (dalam bentuk model ORM)
+$pegawai = Auth::guard('pegawai')->user();
+echo 'Hello, '.$pegawai->nama;
+```
+
 ## Bugs & Problems
 
 Jika terdapat suatu bug atau kendala (misal bug pada model, atau bug pada middleware, atau method yang kalian bikin gak work, dll), lapor ke miko biar langsung diperbaiki dan diselesaikan supaya tidak mengganggu pekerjaan kalian.
