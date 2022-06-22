@@ -88,3 +88,18 @@ Jika terdapat suatu bug atau kendala (misal bug pada model, atau bug pada middle
 ## Development
 
 Proses development selebihnya akan dikoordinasi melalui group WhatsApp.
+
+## Testing
+
+Untuk melakukan testing sebagai **admin**, gunakan kredensial berikut:
+
+- E-mail: **root@localhost.localdomain**
+- Password: **root**
+- Kemudian masuk ke **/admin/login**
+
+Untuk melakukan testing sebagai **pegawai**, gunakan kredensial berikut:
+
+- Lihat pada file seeder (database/seeders/DatabaseSeeder.php) untuk daftar pegawai selengkapnya
+- NIK: **(autogenerate, dapat melihat database)**
+- Password: **(bisa melihat pada seeder)**
+- Kemudian masuk ke **/pegawai/login**
