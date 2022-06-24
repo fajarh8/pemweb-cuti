@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RiwayatCuti extends Model
 {
@@ -31,5 +33,17 @@ class RiwayatCuti extends Model
     public function jenisCuti()
     {
         return $this->belongsTo(JenisCuti::class, 'id_jenis_cuti', 'id');
+    }
+
+    public function simpanBuktiPengajuan(Request $request, $field)
+    {
+        $file = $request->file($field);
+        $this->path_bukti_pengajuan = $file->store('bukti_pengajuan');
+        $this->save();
+    }
+
+    public function bacaBuktiPengajuan()
+    {
+        return Storage::download($this->path_bukti_pengajuan, 'BPCUTI_'.$this->id.'.pdf');
     }
 }
