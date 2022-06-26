@@ -70,6 +70,22 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Cuti Karena Alasan Penting',
             'created_by' => 'seeder'
         ]);
+        $jenisCuti['cuti_sakit'] = JenisCuti::create([
+            'nama' => 'Cuti Sakit',
+            'created_by' => 'seeder'
+        ]);
+        $jenisCuti['cuti_melahirkan'] = JenisCuti::create([
+            'nama' => 'Cuti Melahirkan',
+            'created_by' => 'seeder'
+        ]);
+        $jenisCuti['cuti_besar'] = JenisCuti::create([
+            'nama' => 'Cuti Besar',
+            'created_by' => 'seeder'
+        ]);
+        $jenisCuti['cuti_di_luar_tanggungan_perusahaan'] = JenisCuti::create([
+            'nama' => 'Cuti Di Luar Tanggungan Perusahaan',
+            'created_by' => 'seeder'
+        ]);
 
         RiwayatCuti::create([
             'id_pegawai' => $pegawai['alice']->id,
