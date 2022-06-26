@@ -60,7 +60,7 @@ class CutiController extends Controller
 
     public function riwayatCutiHTML(Request $request)
     {
-        $riwayat_cuti = RiwayatCuti::where('id_pegawai', Auth::guard('pegawai')->id())->get();
+        $riwayat_cuti = RiwayatCuti::where('id_pegawai', Auth::guard('pegawai')->id())->orderBy('created_at', 'desc')->get();
         return view('pegawai.cuti.riwayat', compact('riwayat_cuti'));
     }
 
@@ -71,5 +71,15 @@ class CutiController extends Controller
         $warna['approved'] = 'bg-success';
 
         return view('pegawai.cuti.status', compact('cuti', 'warna'));
+    }
+
+    public function statusCutiBuktiPengajuanPDF(RiwayatCuti $cuti)
+    {
+        return $cuti->bacaBuktiPengajuan();
+    }
+
+    public function statusCutiSuratizinPDF(RiwayatCuti $cuti)
+    {
+        return $cuti->bacaSuratIzin();
     }
 }
