@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{pegawai}', 'editPegawaiHTML')->name('admin.pegawai.edit');
             Route::post('/edit/{pegawai}', 'editPegawaiDB');
 
-            Route::post('/hapus/{pegawai}', 'hapusPegawaiDB');
+            Route::get('/hapus/{pegawai}', 'hapusPegawaiDB');
         });
 
         Route::group([
@@ -59,8 +59,23 @@ Route::prefix('admin')->group(function () {
             Route::get('/detail/{cuti}/buktipengajuan', 'detailCutiBuktipengajuanPDF')->name('admin.cuti.detail.buktipengajuan');
             Route::get('/detail/{cuti}/suratizin', 'detailCutiSuratizinPDF')->name('admin.cuti.detail.suratizin');
 
-            Route::post('/approve/{cuti}', 'approveCutiDB')->name('admin.cuti.approve');
-            Route::post('/reject/{cuti}', 'rejectCutiDB')->name('admin.cuti.reject');
+            Route::get('/approve/{cuti}', 'approveCutiDB')->name('admin.cuti.approve');
+            Route::get('/reject/{cuti}', 'rejectCutiDB')->name('admin.cuti.reject');
+        });
+
+        Route::group([
+            'prefix' => 'perusahaan',
+            'controller' => Admin\PerusahaanController::class
+        ], function () {
+            Route::get('/identitas', 'identitasPerusahaanHTML')->name('admin.perusahaan.identitas');
+            Route::post('/identitas', 'identitasPerusahaanDB');
+
+            Route::get('/logo', 'logoPerusahaanHTML')->name('admin.perusahaan.logo');
+            Route::get('/logo/img', 'logoPerusahaanIMG')->name('admin.perusahaan.logo.img');
+            Route::post('/logo', 'logoPerusahaanDB');
+
+            Route::get('/pejabat', 'pejabatPerusahaanHTML')->name('admin.perusahaan.pejabat');
+            Route::post('/pejabat', 'pejabatPerusahaanDB');
         });
     });
 });
