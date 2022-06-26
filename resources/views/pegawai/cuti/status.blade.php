@@ -3,6 +3,7 @@
 @section('title', 'Status Cuti Pegawai')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <h4>Status Cuti Pegawai</h4><br><br>
@@ -12,35 +13,36 @@
             <label for="awal-cuti">Tanggal Awal Cuti</label>
             <div class="input-group mb-auto">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar2"></i></span>
+                    <span class="input-group-text" id="basic-addon1" style="height: 100%"><i class="bi bi-calendar2"></i></span>
                 </div>
-                <input type="text" class="form-control" id="awal-cuti" disabled>
+                <input type="text" class="form-control" id="awal-cuti" name="tgl_awal_cuti"
+                value="{{$cuti->tgl_awal_cuti}}" disabled style="font-size: 15px">
             </div>    
         </div>
         <div class="form-group col-md-6">
             <label for="awal-cuti">Tanggal Akhir Cuti</label>
             <div class="input-group mb-auto">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar2-check"></i></span>
+                    <span class="input-group-text" id="basic-addon1" style="height: 100%"><i class="bi bi-calendar2-check"></i></span>
                 </div>
-                <input type="text" class="form-control" id="akhir-cuti" disabled>
+                <input type="text" class="form-control" id="akhir-cuti" name="tgl_akhir_cuti"
+                value="{{$cuti->tgl_akhir_cuti}}" disabled style="font-size: 15px">
             </div>    
         </div>
         <div class="form-group col-md-12" id="alasan">
             <label for="awal-cuti">Alasan Cuti</label>
             <div class="input-group mb-auto">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-text"></i></span>
+                    <span class="input-group-text" id="basic-addon1" style="height: 100%"><i class="bi bi-file-text"></i></span>
                 </div>
-                <input type="text" class="form-control" id="alasan-cuti" disabled>
+                <input type="text" class="form-control" id="alasan-cuti" disabled name="" value="{{$cuti->jenisCuti->nama}}">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-text"></i></span>
+                    <span class="input-group-text" id="basic-addon1" style="height: 100%"><i class="bi bi-file-text"></i></span>
                 </div>
             </div>    
         </div>
-       <h4><span class="badge bg-warning">Masih Diproses</span></h4> 
-       <h4><span class="badge bg-success"> Diterima</span></h4>
-       <h4><span class="badge bg-danger">Ditolak</span></h4>
+        <h4><span class="badge {{ $warna[$cuti->status_cuti] }} mt-5 mb-0"
+            style="font-size: 21px">{{$cuti->status_cuti}}</span></h4> 
     </div>
 </div>
 @endsection
@@ -49,7 +51,7 @@
 
 <style>
     .container{
-            margin-top: 30px;
+        margin-top: 30px;
             border: solid 1px rgba(0, 0, 0, 0.267);
             padding: 40px;
             width: 400px;
@@ -70,14 +72,6 @@
         margin-bottom: 25px;
     }
 </style>
-
-<script>
-$(document).ready(function() {
-  document.getElementById('awal-cuti').value = '01/01/2022';
-  document.getElementById('akhir-cuti').value = '01/02/2022';
-  document.getElementById('alasan-cuti').value = 'Cuti Tahunan';
-});
-</script>
 
 @endpush
 

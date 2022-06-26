@@ -3,41 +3,66 @@
 @section('title', 'Ajukan Cuti Pegawai')
 
 @section('content')
-<form>
+
+
+<form method="POST" action="{{ route('pegawai.cuti.ajukan') }}" enctype="multipart/form-data">
+    @csrf
     <div class="container">
         <div class="row">
             <h4>Pengajuan Cuti Pegawai</h4><br><br>
             <span class="line"></span>
             <div class="form-group col-12">
-                <div>NIK : <strong>33110123456789</strong></div>
-                <div>Nama : <strong>John Doe</strong></div>
+                @foreach ($pegawai as $pgw)
+                <div>NIK : <strong>{{$pgw->nik}}</strong></div>
+                <div>Nama : <strong>{{$pgw->nama}}</strong></div>
+                @endforeach
             </div>
             <div class="form-group col-md-6">
                 <label for="awal-cuti">Tanggal Awal Cuti</label>
-                <input type="date" class="form-control" id="">
+                <input type="date" class="form-control" id="" @error('tgl_awal_cuti') is-invalid @enderror
+                name="tgl_awal_cuti" value="{{ old('tgl_awal_cuti') }}">
+
+                @error('tgl_awal_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror       
             </div>
             <div class="form-group col-md-6">
                 <label for="akhir-cuti">Tanggal Akhir Cuti</label>
-                <input type="date" class="form-control" id="">
+                <input type="date" class="form-control" @error('tgl_akhir_cuti') is-invalid @enderror
+                name="tgl_akhir_cuti" value="{{ old('tgl_akhir_cuti') }}">
+
+                @error('tgl_akhir_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <label for="alasan">Alasan Cuti</label>
             <div class="form-group col-md-12 input-group mb-auto">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-text"></i></span>
+                    <span class="input-group-text" id="basic-addon1" style="height: 100%"><i class="bi bi-file-text"></i></span>
                 </div>
-                <select class="form-select form-select" aria-label=".form-select " style="text-align: center;">
+                <select class="form-select form-select" aria-label=".form-select " style="text-align: center;"
+                @error('id_jenis_cuti') is-invalid @enderror name="id_jenis_cuti" value="{{ old('id_jenis_cuti') }}">
                     <option hidden disabled selected>--Jenis Alasan Cuti--</option>
-                    <option value="1">Cuti Besar</option>
-                    <option value="2">Cuti Tahunan</option>
+                    <option value="1">Cuti Tahunan</option>
+                    <option value="2">Cuti Karena Alasan Penting</option>
                     <option value="3">Cuti Sakit</option>
                     <option value="4">Cuti Melahirkan</option>
-                    <option value="5">Cuti Karena Alasan Penting</option>
+                    <option value="5">Cuti Besar</option>
                     <option value="6">Cuti Di Luar Tanggungan Perusahaan</option>
                 </select>
+                @error('id_jenis_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-group col-md-12" style="margin-bottom:15px; margin-top:30px;">
                 <label class="btn btn-primary" for="actual-button" style="font-size:15px"><i class="bi bi-upload"></i> Surat Pengajuan</label>
-                <input type="file" id="actual-button" hidden>
+                <input type="file" id="actual-button" name="surat-pengajuan" hidden>
                 <div id="file-chosen" style="font-size: 13px; color: rgba(0, 0, 0, 0.637);">No file chosen</div>
             </div>
             <br><br>

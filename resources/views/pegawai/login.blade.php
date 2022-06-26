@@ -11,7 +11,7 @@
         <input type="text" id="inputEmail" class="form-control" name="nik" placeholder="Masukkan NIK anda" value="{{ old('nik') }}" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Masukkan password anda" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
     </form>
 </div>
 @endsection
