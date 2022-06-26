@@ -56,6 +56,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/list', 'listCutiHTML')->name('admin.cuti.list');
 
             Route::get('/detail/{cuti}', 'detailCutiHTML')->name('admin.cuti.detail');
+            Route::get('/detail/{cuti}/buktipengajuan', 'detailCutiBuktipengajuanPDF')->name('admin.cuti.detail.buktipengajuan');
+            Route::get('/detail/{cuti}/suratizin', 'detailCutiSuratizinPDF')->name('admin.cuti.detail.suratizin');
 
             Route::post('/approve/{cuti}', 'approveCutiDB')->name('admin.cuti.approve');
             Route::post('/reject/{cuti}', 'rejectCutiDB')->name('admin.cuti.reject');
@@ -85,6 +87,7 @@ Route::prefix('pegawai')->group(function() {
             Route::get('/riwayat', 'riwayatCutiHTML')->name('pegawai.cuti.riwayat');
 
             Route::get('/status/{cuti}', 'statusCutiHTML')->name('pegawai.cuti.status');
+            Route::get('/status/{cuti}/buktipengajuan', 'statusCutiBuktipengajuanPDF')->name('pegawai.cuti.status.buktipengajuan');
             Route::get('/status/{cuti}/suratizin', 'statusCutiSuratizinPDF')->name('pegawai.cuti.status.suratizin');
         });
     });
