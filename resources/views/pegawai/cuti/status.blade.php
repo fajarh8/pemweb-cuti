@@ -8,11 +8,11 @@
     <div class="row">
         <h4>Status Cuti Pegawai</h4><br><br>
         <span class="line"></span>
-        <div class="form-group col-12 mb-3" style="text-align: left">
-            <div class="text-left">Waktu Pengajuan<span style="margin-left: 15px"></span>: <strong>{{$riwayat_cuti->created_at}}</strong></div>
-            <div class="text-left">NIK<span style="margin-left: 112px"></span>: <strong>{{$pegawai->nik}}</strong></div>
-            <div class="text-left">Nama<span style="margin-left: 96px" class="tab"></span>: <strong>{{$pegawai->nama}}</strong></div>
-            <div class="text-left">Departemen<span style="margin-left: 50px"></span>: <strong>{{$departemen->nama}}</strong></div>
+        <div class="form-group col-12 mb-3" style="text-align: left; line-height:25px">
+            <div class="text-left">Waktu Pengajuan<span style="margin-left: 45px"></span>: <strong>{{$riwayat_cuti->created_at}}</strong></div>
+            <div class="text-left">NIK<span style="margin-left: 142px"></span>: <strong>{{$pegawai->nik}}</strong></div>
+            <div class="text-left">Nama<span style="margin-left: 126px" class="tab"></span>: <strong>{{$pegawai->nama}}</strong></div>
+            <div class="text-left">Departemen<span style="margin-left: 80px"></span>: <strong>{{$departemen->nama}}</strong></div>
         </div>
         <span class="line"></span>
         <p style="font-size:18px">Pengajuan cuti Anda sebagai berikut :</p>
@@ -50,11 +50,19 @@
         </div>
         <div class="form-group col-md-12">
             <a href="{{ route('pegawai.cuti.status.buktipengajuan', ['cuti' => $cuti->id]) }}" target="_blank">
-            <button type="submit" class="btn btn-primary" style="font-size:18px"><i class="bi bi-eye"></i> Bukti Pengajuan</button>
+            <button type="submit" class="btn btn-primary" style="font-size:17px"><i class="bi bi-eye"></i>
+                <span style="margin-left:6px"></span> Bukti Pengajuan</button>
             </a>
         </div>
         <h4><span class="badge {{ $warna[$cuti->status_cuti] }} mt-2 mb-0"
-            style="font-size: 20px; height:38px;">{{$cuti->status_cuti}}</span></h4> 
+            style="font-size: 20px; height:38px;">{{$cuti->status_cuti}}</span></h4>
+        @if ($cuti->status_cuti == 'approved')
+            <a href="{{ route('pegawai.cuti.status.suratizin', ['cuti'=>$riwayat_cuti->id]) }}" download="">
+                <button type="submit" class="btn btn-dark" style="font-size:15px"><i class="bi bi-download"></i>
+                    <span style="margin-left:6px"></span>Download Surat Izin</button>
+
+            </a>
+        @endif
     </div>
 </div>
 @endsection
@@ -66,7 +74,7 @@
         margin-top: 30px;
             border: solid 1px rgba(0, 0, 0, 0.267);
             padding: 40px;
-            width: 430px;
+            width: 480px;
             text-align: center;
             line-height: 2;
     }
