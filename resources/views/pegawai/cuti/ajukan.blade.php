@@ -11,12 +11,12 @@
         <div class="row">
             <h4>Pengajuan Cuti Pegawai</h4><br><br>
             <span class="line"></span>
-            <div class="form-group col-12">
-                @foreach ($pegawai as $pgw)
-                <div>NIK : <strong>{{$pgw->nik}}</strong></div>
-                <div>Nama : <strong>{{$pgw->nama}}</strong></div>
-                @endforeach
+            <div class="form-group col-12 mb-3" style="text-align: left">
+                <div class="text-left">NIK<span style="margin-left: 67px"></span>: <strong>{{$pegawai->nik}}</strong></div>
+                <div class="text-left">Nama<span style="margin-left: 51px" class="tab"></span>: <strong>{{$pegawai->nama}}</strong></div>
+                <div class="text-left">Departemen<span style="margin-left: 5px"></span>: <strong>{{$departemen->nama}}</strong></div>
             </div>
+            <span class="line"></span>
             <div class="form-group col-md-6">
                 <label for="awal-cuti">Tanggal Awal Cuti</label>
                 <input type="date" class="form-control" min="<?php echo date('Y-m-d');?>" @error('tgl_awal_cuti') is-invalid @enderror
@@ -79,7 +79,7 @@
         margin-top: 30px;
         border: solid 1px rgba(0, 0, 0, 0.267);
         padding: 40px;
-        width: 400px;
+        width: 430px;
         text-align: center;
         line-height: 2;
 
@@ -93,6 +93,7 @@
     .form-group input, .form-group select {
         background-color: transparent;
     }
+
 </style>
 
 <script>
