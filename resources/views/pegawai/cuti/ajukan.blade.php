@@ -47,12 +47,10 @@
                 <select class="form-select form-select" aria-label=".form-select " style="text-align: center;"
                 @error('id_jenis_cuti') is-invalid @enderror name="id_jenis_cuti" value="{{ old('id_jenis_cuti') }}">
                     <option hidden disabled selected>--Jenis Alasan Cuti--</option>
-                    <option value="1">Cuti Tahunan</option>
-                    <option value="2">Cuti Karena Alasan Penting</option>
-                    <option value="3">Cuti Sakit</option>
-                    <option value="4">Cuti Melahirkan</option>
-                    <option value="5">Cuti Besar</option>
-                    <option value="6">Cuti Di Luar Tanggungan Perusahaan</option>
+                    @foreach ($jenis_cuti as $cuti)
+                        <option value="{{$cuti->id}}">{{$cuti->nama}}</option>
+                    @endforeach
+                    
                 </select>
                 @error('id_jenis_cuti')
                     <div class="invalid-feedback">

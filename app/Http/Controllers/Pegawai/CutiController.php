@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
-    public function ajukanCutiHTML(Request $request, Pegawai $pegawai)
+    public function ajukanCutiHTML(Request $request, Pegawai $pegawai, JenisCuti $jenis_cuti)
     {
         $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->get();
+        $jenis_cuti = JenisCuti::all();
         // Auth::guard('pegawai')->user()->bisaCuti('tanggal_awl_cuti');
         
-        return view('pegawai.cuti.ajukan', compact('pegawai'));
+        return view('pegawai.cuti.ajukan', compact('pegawai', 'jenis_cuti'));
     }
 
     public function ajukanCutiDB(Request $request){
