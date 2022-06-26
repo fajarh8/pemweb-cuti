@@ -10,17 +10,20 @@ use App\Models\{
     RiwayatCuti,
     JenisCuti,
     Pegawai,
+    Departemen
 };
 use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
-    public function ajukanCutiHTML(Request $request, Pegawai $pegawai)
+    public function ajukanCutiHTML(Request $request)
     {
-        $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->get();
+        $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->first();
+        $departemen = Departemen::where('id', Auth::guard('pegawai')->user()->id_departemen)->first();
+        $jenis_cuti = JenisCuti::all();
         // Auth::guard('pegawai')->user()->bisaCuti('tanggal_awl_cuti');
         
-        return view('pegawai.cuti.ajukan', compact('pegawai'));
+        return view('pegawai.cuti.ajukan', compact('pegawai', 'jenis_cuti', 'departemen'));
     }
 
     public function ajukanCutiDB(Request $request){
@@ -66,11 +69,17 @@ class CutiController extends Controller
 
     public function statusCutiHTML(RiwayatCuti $cuti)
     {
+        $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->first();
+        $riwayat_cuti = RiwayatCuti::where('id_pegawai', Auth::guard('pegawai')->id())->first();
+        $departemen = Departemen::where('id', Auth::guard('pegawai')->user()->id_departemen)->first();
+
+
+
         $warna['pending'] = 'bg-warning';
         $warna['rejected'] = 'bg-danger';
         $warna['approved'] = 'bg-success';
 
-        return view('pegawai.cuti.status', compact('cuti', 'warna'));
+        return view('pegawai.cuti.status', compact('cuti', 'warna', 'pegawai', 'riwayat_cuti', 'departemen'));
     }
 
     public function statusCutiBuktiPengajuanPDF(RiwayatCuti $cuti)
