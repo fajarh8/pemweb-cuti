@@ -69,15 +69,17 @@ class CutiController extends Controller
 
     public function statusCutiHTML(RiwayatCuti $cuti)
     {
-        $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->get();
-        $riwayat_cuti = RiwayatCuti::where('id_pegawai', Auth::guard('pegawai')->id())->get();
+        $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->first();
+        $riwayat_cuti = RiwayatCuti::where('id_pegawai', Auth::guard('pegawai')->id())->first();
+        $departemen = Departemen::where('id', Auth::guard('pegawai')->user()->id_departemen)->first();
+
 
 
         $warna['pending'] = 'bg-warning';
         $warna['rejected'] = 'bg-danger';
         $warna['approved'] = 'bg-success';
 
-        return view('pegawai.cuti.status', compact('cuti', 'warna'));
+        return view('pegawai.cuti.status', compact('cuti', 'warna', 'pegawai', 'riwayat_cuti', 'departemen'));
     }
 
     public function statusCutiBuktiPengajuanPDF(RiwayatCuti $cuti)
