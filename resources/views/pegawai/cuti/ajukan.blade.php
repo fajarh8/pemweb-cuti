@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="awal-cuti">Tanggal Awal Cuti</label>
-                <input type="date" class="form-control" id="" @error('tgl_awal_cuti') is-invalid @enderror
+                <input type="date" class="form-control" min="<?php echo date('Y-m-d');?>" @error('tgl_awal_cuti') is-invalid @enderror
                 name="tgl_awal_cuti" value="{{ old('tgl_awal_cuti') }}">
 
                 @error('tgl_awal_cuti')
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="akhir-cuti">Tanggal Akhir Cuti</label>
-                <input type="date" class="form-control" @error('tgl_akhir_cuti') is-invalid @enderror
+                <input type="date" class="form-control" min="<?php echo date('Y-m-d');?>" @error('tgl_akhir_cuti') is-invalid @enderror
                 name="tgl_akhir_cuti" value="{{ old('tgl_akhir_cuti') }}">
 
                 @error('tgl_akhir_cuti')
@@ -61,7 +61,7 @@
                 @enderror
             </div>
             <div class="form-group col-md-12" style="margin-bottom:15px; margin-top:30px;">
-                <label class="btn btn-primary" for="actual-button" style="font-size:15px"><i class="bi bi-upload"></i> Surat Pengajuan</label>
+                <label class="btn btn-primary" for="actual-button" style="font-size:17px"><i class="bi bi-upload"></i> Surat Pengajuan</label>
                 <input type="file" id="actual-button" name="surat-pengajuan" hidden>
                 <div id="file-chosen" style="font-size: 13px; color: rgba(0, 0, 0, 0.637);">No file chosen</div>
             </div>

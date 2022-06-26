@@ -41,8 +41,13 @@
                 </div>
             </div>    
         </div>
+        <div class="form-group col-md-12">
+            <a href="#" download>
+            <button type="submit" class="btn btn-dark" style="font-size:18px"><i class="bi bi-download"></i> Bukti Pengajuan</button>
+            </a>
+        </div>
         <h4><span class="badge {{ $warna[$cuti->status_cuti] }} mt-5 mb-0"
-            style="font-size: 21px">{{$cuti->status_cuti}}</span></h4> 
+            style="font-size: 20px; height:38px;">{{$cuti->status_cuti}}</span></h4> 
     </div>
 </div>
 @endsection
