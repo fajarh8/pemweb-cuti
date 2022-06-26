@@ -44,6 +44,6 @@ class RiwayatCuti extends Model
 
     public function bacaBuktiPengajuan()
     {
-        return Storage::download($this->path_bukti_pengajuan, 'BPCUTI_'.$this->id.'.pdf');
+        return response()->file(Storage::path($this->path_bukti_pengajuan));
     }
 }
