@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
-    public function ajukanCutiHTML(Request $request)
+    public function ajukanCutiHTML(Request $request, Pegawai $pegawai)
     {
         $pegawai = Pegawai::where('id', Auth::guard('pegawai')->id())->get();
+        // Auth::guard('pegawai')->user()->bisaCuti('tanggal_awl_cuti');
+        
         return view('pegawai.cuti.ajukan', compact('pegawai'));
     }
 
@@ -28,17 +30,15 @@ class CutiController extends Controller
             'id_jenis_cuti' => 'required|integer',
         ]);
 
-        $ajukan = RiwayatCuti::create([
-            'id_pegawai' => Auth::guard('pegawai')->id(),       
-            'tgl_awal_cuti' => $request->tgl_awal_cuti,
-            'tgl_akhir_cuti' => $request->tgl_akhir_cuti,
-            'id_jenis_cuti' => $request->id_jenis_cuti,
-            'status_cuti' => 'pending',
-            'path_bukti_pengajuan' => ''
-        ]);
-
-        if ($ajukan) {
-            
+        if (Auth::guard('pegawai')->user()->bisaCuti($request->tgl_awal_cuti)){
+            $ajukan = RiwayatCuti::create([
+                'id_pegawai' => Auth::guard('pegawai')->id(),       
+                'tgl_awal_cuti' => $request->tgl_awal_cuti,
+                'tgl_akhir_cuti' => $request->tgl_akhir_cuti,
+                'id_jenis_cuti' => $request->id_jenis_cuti,
+                'status_cuti' => 'pending',
+                'path_bukti_pengajuan' => ''
+            ]);
             $ajukan->simpanBuktiPengajuan($request, 'surat-pengajuan');
 
             return redirect()
