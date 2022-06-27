@@ -17,14 +17,14 @@
     <body class="bg-light">
         <div id="main-content" class="d-flex flex-row">
             <div class="bg-dark text-light d-none d-lg-block shadow overflow-auto" style="width: 300px; height: 100vh">
-                <h3 class="py-4 text-center menu-title"></h3>
+                <h3 class="py-4 text-center menu-title">@yield('menutitle')</h3>
                 <ul class="nav nav-pills flex-column nav-content">@yield('sidebar')</ul>
             </div>
             <div class="flex-grow-1 d-flex flex-column overflow-auto" style="height: 100vh">
                 <div class="d-block d-lg-none">
                     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <div class="container-fluid">
-                            <span class="navbar-brand menu-title"></span>
+                            <span class="navbar-brand menu-title">@yield('menutitle')</span>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-container">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

@@ -10,34 +10,24 @@
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Tanggal Awal Cuti</th>
-                <th scope="col">Tanggal Akhir Cuti</th>
-                <th scope="col">Alasan Cuti</th>
+                <th scope="col">Tgl Awal Cuti</th>
+                <th scope="col">Tgl Akhir Cuti</th>
+                <th scope="col">Alasan</th>
+                <th scope="col">Status</th>
                 <th scope="col">Detail</th>
             </tr>
         </thead>
         <tbody>
+            @foreach ($riwayat_cuti as $cuti)
             <tr>
-                <th scope="row">1</th>
-                <td>01/01/2022</td>
-                <td>01/02/2022</td>
-                <td>Cuti Tahunan</td>
-                <td><a class="nav-menu" href="{{ route('pegawai.cuti.status', ['cuti' => 'example']) }}"><i class="bi bi-eye"></i></a></td>
+                <td scope="row">{{$loop->iteration}}</td>
+                <td>{{$cuti->tgl_awal_cuti}}</td>
+                <td>{{$cuti->tgl_akhir_cuti}}</td>
+                <td>{{$cuti->jenisCuti->nama}}</td>
+                <td>{{$cuti->status_cuti}}</td>
+                <td><a class="nav-menu" href="{{ route('pegawai.cuti.status', ['cuti'=>$cuti->id]) }}"><i class="bi bi-eye"></i></a></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>01/01/2022</td>
-                <td>01/02/2022</td>
-                <td>Cuti Karena Alasan Penting</td>
-                <td><a class="nav-menu" href="{{ route('pegawai.cuti.status', ['cuti' => 'example']) }}"><i class="bi bi-eye"></i></a></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>01/01/2022</td>
-                <td>01/02/2022</td>
-                <td>Cuti Di Luar Tanggungan Perusahaan</td>
-                <td><a class="nav-menu" href="{{ route('pegawai.cuti.status', ['cuti' => 'example']) }}"><i class="bi bi-eye"></i></a></td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
