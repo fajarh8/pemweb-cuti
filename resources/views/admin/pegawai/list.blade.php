@@ -33,7 +33,7 @@
             <td>{{$p->alamat}}</td>
             <td>{{$p->departemen->nama}}</td>
             <td>
-                <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
+                <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member{{$p->id}}"></i>
                 <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member{{$p->id}}"></i>
             </td>
         </tr>
@@ -76,34 +76,19 @@
         <div class="modal-body">
             <form class="row g-3 align-middle" method="POST" action="{{route('admin.pegawai.edit', ['pegawai' => $p->id])}}">
               @csrf
-        <div class="modal-body" action="{{url('admin/pegawai/edit/'.$p->id)}}">
-            <form class="row g-3 align-middle">
-                <div class="form-floating col-12 mb-1" style="margin-top: 5px;">
+                <div class="form-floating col-12" style="margin-top: 5px;">
                     <input name="nama" type="text" class="form-control " id="nama" placeholder="NAMA" value="{{$p->nama}}">
                     <label for="nama">Nama</label>
                 </div>
-                    <div class="form-floating col-md-6 mb-1">
-                        <input name="nik" type="text" class="form-control" id="nik" placeholder="NIK" value="{{$p->nik}}">
-                        <label for="nik">NIK</label>
-                    </div>
-                    <div class="col-12 col-md-6 mb-3">
-                      <div class="form-floating">
+                    <div class="form-floating col-12 mb-3">
                           <input name="no_induk" type="text" class="form-control" id="no_induk" placeholder="no_induk" value="{{$p->no_induk}}">
                           <label for="no_induk">Nomor Induk</label>
-                    <div class="form-floating col-md-4 mb-1">
+                    </div>
+                    <div class="form-floating mb-1">
                         <input name="nik" type="text" class="form-control" id="nik" placeholder="NIK" value="{{$p->nik}}">
                         <label for="nik">NIK</label>
                     </div>
-                    <div class="form-floating col-md-4 mb-1">
-                      <select name="jenis_kelamin" class="form-select" id="jkelamin" aria-label="JenisKelamin" value="{{$p->jenis_kelamin}}">
-                        <option selected>-</option>
-                        <option value="1">Laki-Laki</option>
-                        <option value="2">Perempuan</option>
-                      </select>
-                      <label for="floatingSelect">Jenis Kelamin</label>
-                      </div>
-                  </div>
-                    <div class="form-floating col-md-4 mb-1">
+                    <div class="form-floating mb-1">
                       <select name="jenis_kelamin" class="form-select" id="jkelamin" aria-label="JenisKelamin" >
                         <option value="L" 
                         @if($p->jenis_kelamin=='L')
@@ -115,9 +100,7 @@
                         @endif>Perempuan</option>
                         {{$p->jenis_kelamin}}
                       </select>
-                      <label for="floatingSelect">Jenis Kelamin</label>
-                      </div>
-                      <div class="col-12 col-md-4 mb-3">
+                      <div class="col-12 mb-3">
                         <div class="form-floating">
                             <select name="departemen" class="form-select" id="departemen" aria-label="JenisKelamin">
                               @foreach ($departemen as $dp)
@@ -129,14 +112,14 @@
                             </select>
                             <label for="floatingSelect">Departemen</label>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3">
+                      </div>
+                    <div class="col-12 mb-3">
                       <div class="form-floating">
-                          <input name="password" type="text" class="form-control" id="password" placeholder="password" value="{{$p->password}}">
+                          <input name="password" type="text" class="form-control" id="password" placeholder="password(kosongi apabila tidak ingin mengganti)">
                           <label for="password">Password</label>
                       </div>
                   </div>
-                <div class="form-floating col-12 mb-1">
+                <div class="form-floating col-12">
                     <input name="alamat" type="text" class="form-control" id="alamat" placeholder="ALAMAT" value="{{$p->alamat}}">
                     <label for="alamat">Alamat</label>
                 </div>
@@ -145,6 +128,7 @@
                   <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
+        </div>
         </div>
       </div>
     </div>
