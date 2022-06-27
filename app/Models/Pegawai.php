@@ -27,6 +27,7 @@ class Pegawai extends Model implements
         'deleted_by'
     ];
 
+
     public function departemen()
     {
         return $this->belongsTo(Departemen::class, 'id_departemen', 'id');

@@ -13,56 +13,60 @@
 <div class="container table-responsive">
     <table class="table table-striped">
       <thead class="table-dark text-center">
+          <th>Nomor</th>
           <th>NAMA</th>
           <th>NIK</th>
+          <th>NO INDUK</th>
           <th>JENIS KELAMIN</th>
           <th>ALAMAT</th>
+          <th>DEPARTEMEN</th>
           <th>TINDAKAN</th>
       </thead>
       <tbody class="text-center">
-            <tr>
-                <td>John Doe</td>
-                <td>33110987654321</td>
-                <td>L</td>
-                <td>New York</td>
-                <td>
-                    <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
-                    <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>Jane Doe</td>
-                <td>33111234567890</td>
-                <td>P</td>
-                <td>Pennsylvania</td>
-                <td>
-                    <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
-                    <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member"></i>
-                </td>
-            </tr>
+        @foreach ($pegawai as $p)
+        <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$p->nama}}</td>
+            <td>{{$p->nik}}</td>
+            <td>{{$p->no_induk}}</td>
+            <td>{{$p->jenis_kelamin}}</td>
+            <td>{{$p->alamat}}</td>
+            <td>{{$p->departemen->nama}}</td>
+            <td>
+                <i class="bi bi-trash btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#hapus-member"></i>
+                <i class="bi bi-pencil btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#edit-member{{$p->id}}"></i>
+            </td>
+        </tr>
+        @endforeach
       </tbody>
     </table>
 </div>
 
-<div class="modal fade" id="hapus-member" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($pegawai as $p)
+<div class="modal fade" id="hapus-member{{$p->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Kick Pegawai</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form action="{{route('admin.pegawai.hapus', ['pegawai' => $p->id])}}" method="GET">
+          @csrf
         <div class="modal-body">
           YAKIN???
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">YAKIN BOSS</button>
+          <button type="submit" class="btn btn-primary">YAKIN BOSS</button>
         </div>
+      </form>
       </div>
     </div>
 </div>
+@endforeach
 
-  <div class="modal fade" id="edit-member" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  @foreach ($pegawai as $p)
+  <div class="modal fade" id="edit-member{{$p->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -70,35 +74,83 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <form class="row g-3 align-middle" method="POST" action="{{route('admin.pegawai.edit', ['pegawai' => $p->id])}}">
+              @csrf
+        <div class="modal-body" action="{{url('admin/pegawai/edit/'.$p->id)}}">
             <form class="row g-3 align-middle">
                 <div class="form-floating col-12 mb-1" style="margin-top: 5px;">
-                    <input type="text" class="form-control" id="nama" placeholder="NAMA">
+                    <input name="nama" type="text" class="form-control " id="nama" placeholder="NAMA" value="{{$p->nama}}">
                     <label for="nama">Nama</label>
                 </div>
+                    <div class="form-floating col-md-6 mb-1">
+                        <input name="nik" type="text" class="form-control" id="nik" placeholder="NIK" value="{{$p->nik}}">
+                        <label for="nik">NIK</label>
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                      <div class="form-floating">
+                          <input name="no_induk" type="text" class="form-control" id="no_induk" placeholder="no_induk" value="{{$p->no_induk}}">
+                          <label for="no_induk">Nomor Induk</label>
                     <div class="form-floating col-md-4 mb-1">
-                        <input type="text" class="form-control" id="nik" placeholder="NIK">
+                        <input name="nik" type="text" class="form-control" id="nik" placeholder="NIK" value="{{$p->nik}}">
                         <label for="nik">NIK</label>
                     </div>
                     <div class="form-floating col-md-4 mb-1">
-                        <select class="form-select" id="jkelamin" aria-label="JenisKelamin">
-                          <option selected>-</option>
-                          <option value="1">Laki-Laki</option>
-                          <option value="2">Perempuan</option>
-                        </select>
-                        <label for="floatingSelect">Jenis Kelamin</label>
+                      <select name="jenis_kelamin" class="form-select" id="jkelamin" aria-label="JenisKelamin" value="{{$p->jenis_kelamin}}">
+                        <option selected>-</option>
+                        <option value="1">Laki-Laki</option>
+                        <option value="2">Perempuan</option>
+                      </select>
+                      <label for="floatingSelect">Jenis Kelamin</label>
                       </div>
+                  </div>
+                    <div class="form-floating col-md-4 mb-1">
+                      <select name="jenis_kelamin" class="form-select" id="jkelamin" aria-label="JenisKelamin" >
+                        <option value="L" 
+                        @if($p->jenis_kelamin=='L')
+                            selected
+                        @endif>Laki-Laki</option>
+                        <option value="P" 
+                        @if($p->jenis_kelamin=='P')
+                            selected
+                        @endif>Perempuan</option>
+                        {{$p->jenis_kelamin}}
+                      </select>
+                      <label for="floatingSelect">Jenis Kelamin</label>
+                      </div>
+                      <div class="col-12 col-md-4 mb-3">
+                        <div class="form-floating">
+                            <select name="departemen" class="form-select" id="departemen" aria-label="JenisKelamin">
+                              @foreach ($departemen as $dp)
+                              <option value="{{$dp->id}}" 
+                                @if ($dp->id == $p->id_departemen)
+                                  selected
+                                @endif>{{$dp->nama}}</option>    
+                              @endforeach
+                            </select>
+                            <label for="floatingSelect">Departemen</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3">
+                      <div class="form-floating">
+                          <input name="password" type="text" class="form-control" id="password" placeholder="password" value="{{$p->password}}">
+                          <label for="password">Password</label>
+                      </div>
+                  </div>
                 <div class="form-floating col-12 mb-1">
-                    <input type="text" class="form-control" id="alamat" placeholder="ALAMAT">
+                    <input name="alamat" type="text" class="form-control" id="alamat" placeholder="ALAMAT" value="{{$p->alamat}}">
                     <label for="alamat">Alamat</label>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
             </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
+  @endforeach
+
+
 @endsection
 
