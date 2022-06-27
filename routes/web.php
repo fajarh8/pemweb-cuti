@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{pegawai}', 'editPegawaiHTML')->name('admin.pegawai.edit');
             Route::post('/edit/{pegawai}', 'editPegawaiDB');
 
-            Route::get('/hapus/{pegawai}', 'hapusPegawaiDB');
+            Route::get('/hapus/{pegawai}', 'hapusPegawaiDB')->name('admin.pegawai.hapus');
         });
 
         Route::group([
