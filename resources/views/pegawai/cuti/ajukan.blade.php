@@ -79,7 +79,7 @@
         margin-top: 30px;
         border: solid 1px rgba(0, 0, 0, 0.267);
         padding: 40px;
-        width: 430px;
+        width: 450px;
         text-align: center;
         line-height: 2;
 
