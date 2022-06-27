@@ -9,7 +9,7 @@
         <h4>Status Cuti Pegawai</h4><br><br>
         <span class="line"></span>
         <div class="form-group col-12 mb-3" style="text-align: left; line-height:25px">
-            <div class="text-left">Waktu Pengajuan<span style="margin-left: 45px"></span>: <strong>{{$riwayat_cuti->created_at}}</strong></div>
+            <div class="text-left">Waktu Pengajuan<span style="margin-left: 45px"></span>: <strong>{{$cuti->created_at}}</strong></div>
             <div class="text-left">NIK<span style="margin-left: 142px"></span>: <strong>{{$pegawai->nik}}</strong></div>
             <div class="text-left">Nama<span style="margin-left: 126px" class="tab"></span>: <strong>{{$pegawai->nama}}</strong></div>
             <div class="text-left">Departemen<span style="margin-left: 80px"></span>: <strong>{{$departemen->nama}}</strong></div>
@@ -51,14 +51,15 @@
         <div class="form-group col-md-12">
             <a href="{{ route('pegawai.cuti.status.buktipengajuan', ['cuti' => $cuti->id]) }}" target="_blank">
             <button type="submit" class="btn btn-primary" style="font-size:17px"><i class="bi bi-eye"></i>
-                <span style="margin-left:6px"></span> Bukti Pengajuan</button>
+                <span style="margin-left:6px"></span>Bukti Pengajuan</button>
             </a>
         </div>
         <h4><span class="badge {{ $warna[$cuti->status_cuti] }} mt-2 mb-0"
             style="font-size: 20px; height:38px;">{{$cuti->status_cuti}}</span></h4>
         @if ($cuti->status_cuti == 'approved')
             <a href="{{ route('pegawai.cuti.status.suratizin', ['cuti'=>$riwayat_cuti->id]) }}" download="">
-                <button type="submit" class="btn btn-dark" style="font-size:15px"><i class="bi bi-download"></i>
+                <button type="submit" class="btn btn-light btn-outline-dark " 
+                style="font-size:15px; border:solid 2px black; border-radius: 15px"><i class="bi bi-download"></i>
                     <span style="margin-left:6px"></span>Download Surat Izin</button>
 
             </a>
