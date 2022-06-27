@@ -67,7 +67,6 @@ class PegawaiController extends Controller
             'jenis_kelamin' => 'required',
             'departemen' => 'required',
             'alamat' => 'required',
-            'password' => 'required'
         ]);
         
         
@@ -77,7 +76,9 @@ class PegawaiController extends Controller
         $pegawai->jenis_kelamin =  $request['jenis_kelamin'];
         $pegawai->id_departemen =  $request['departemen'];
         $pegawai->alamat =  $request['alamat'];
-        $pegawai->password =  Hash::make($request['password']);
+        if ($request->has('password')) {
+            $pegawai->password = $request['password'];
+        };
         $pegawai->save();
         
         return redirect()->route('admin.pegawai.list')->with('status', 'Data Berhasil Diperbarui!');
@@ -101,8 +102,6 @@ class PegawaiController extends Controller
         $pegawai->jenis_kelamin =  $request['jenis_kelamin'];
         $pegawai->alamat =  $request['alamat'];
         $pegawai->save();
-
-        barangkategori::where('id', $pegawai->id)->delete();
         
         return redirect()->route('admin.pegawai.list')->with('status', 'Berhasil menyimpan data');
     }
