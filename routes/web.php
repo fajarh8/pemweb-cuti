@@ -23,13 +23,14 @@ Route::prefix('admin')->group(function () {
     Route::controller(Admin\AuthController::class)->group(function () {
         Route::get('/login', 'loginHTML')->name('admin.login');
         Route::post('/login', 'loginSESS');
+        Route::get('/logout', 'logoutSESS')->middleware('auth:admin')->name('admin.logout');
     });
 
     Route::controller(Admin\DashboardController::class)->group(function () {
-        Route::get('/dashboard', 'indexHTML')->name('admin.dashboard');
+        Route::get('/dashboard', 'indexHTML')->middleware('auth:admin')->name('admin.dashboard');
     });
 
-    // Route::middleware('auth:admin')->group(function () {
+    Route::middleware('auth:admin')->group(function () {
         Route::group([
             'prefix' => 'pegawai',
             'controller' => Admin\PegawaiController::class
@@ -42,7 +43,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{pegawai}', 'editPegawaiHTML')->name('admin.pegawai.edit');
             Route::post('/edit/{pegawai}', 'editPegawaiDB');
 
-            Route::post('/hapus/{pegawai}', 'hapusPegawaiDB');
+            Route::get('/hapus/{pegawai}', 'hapusPegawaiDB');
         });
 
         Route::group([
@@ -55,24 +56,42 @@ Route::prefix('admin')->group(function () {
             Route::get('/list', 'listCutiHTML')->name('admin.cuti.list');
 
             Route::get('/detail/{cuti}', 'detailCutiHTML')->name('admin.cuti.detail');
+            Route::get('/detail/{cuti}/buktipengajuan', 'detailCutiBuktipengajuanPDF')->name('admin.cuti.detail.buktipengajuan');
+            Route::get('/detail/{cuti}/suratizin', 'detailCutiSuratizinPDF')->name('admin.cuti.detail.suratizin');
 
-            Route::post('/approve/{cuti}', 'approveCutiDB')->name('admin.cuti.approve');
-            Route::post('/reject/{cuti}', 'rejectCutiDB')->name('admin.cuti.reject');
+            Route::get('/approve/{cuti}', 'approveCutiDB')->name('admin.cuti.approve');
+            Route::get('/reject/{cuti}', 'rejectCutiDB')->name('admin.cuti.reject');
         });
-    // });
+
+        Route::group([
+            'prefix' => 'perusahaan',
+            'controller' => Admin\PerusahaanController::class
+        ], function () {
+            Route::get('/identitas', 'identitasPerusahaanHTML')->name('admin.perusahaan.identitas');
+            Route::post('/identitas', 'identitasPerusahaanDB');
+
+            Route::get('/logo', 'logoPerusahaanHTML')->name('admin.perusahaan.logo');
+            Route::get('/logo/img', 'logoPerusahaanIMG')->name('admin.perusahaan.logo.img');
+            Route::post('/logo', 'logoPerusahaanDB');
+
+            Route::get('/pejabat', 'pejabatPerusahaanHTML')->name('admin.perusahaan.pejabat');
+            Route::post('/pejabat', 'pejabatPerusahaanDB');
+        });
+    });
 });
 
 Route::prefix('pegawai')->group(function() {
     Route::controller(Pegawai\AuthController::class)->group(function () {
         Route::get('/login', 'loginHTML')->name('pegawai.login');
         Route::post('/login', 'loginSESS');
+        Route::get('/logout', 'logoutSESS')->middleware('auth:pegawai')->name('pegawai.logout');
     });
 
     Route::controller(Pegawai\DashboardController::class)->group(function () {
-        Route::get('/dashboard', 'indexHTML')->name('pegawai.dashboard');
+        Route::get('/dashboard', 'indexHTML')->middleware('auth:pegawai')->name('pegawai.dashboard');
     });
 
-    // Route::middleware('auth:pegawai')->group(function () {
+    Route::middleware('auth:pegawai')->group(function () {
         Route::group([
             'prefix' => 'cuti',
             'controller' => Pegawai\CutiController::class
@@ -83,8 +102,9 @@ Route::prefix('pegawai')->group(function() {
             Route::get('/riwayat', 'riwayatCutiHTML')->name('pegawai.cuti.riwayat');
 
             Route::get('/status/{cuti}', 'statusCutiHTML')->name('pegawai.cuti.status');
+            Route::get('/status/{cuti}/buktipengajuan', 'statusCutiBuktipengajuanPDF')->name('pegawai.cuti.status.buktipengajuan');
             Route::get('/status/{cuti}/suratizin', 'statusCutiSuratizinPDF')->name('pegawai.cuti.status.suratizin');
         });
-    // });
+    });
 });
 
