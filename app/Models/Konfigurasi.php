@@ -18,4 +18,14 @@ class Konfigurasi extends Model
         'updated_by',
         'deleted_by'
     ];
+
+    public static function valueOf($code, $newValue = NULL)
+    {
+        $cfg = Konfigurasi::where('code', $code)->first();
+        if (isset($newValue)) {
+            $cfg->value = $newValue;
+            $cfg->save();
+        }
+        return $cfg->value;
+    }
 }

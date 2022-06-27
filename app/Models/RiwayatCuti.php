@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Objects\SuratIzinCuti;
 
 class RiwayatCuti extends Model
 {
@@ -45,5 +46,13 @@ class RiwayatCuti extends Model
     public function bacaBuktiPengajuan()
     {
         return response()->file(Storage::path($this->path_bukti_pengajuan));
+    }
+
+    public function bacaSuratIzin()
+    {
+        return response()->streamDownload(function() /*use ($this)*/ {
+            $surat = new SuratIzinCuti($this);
+            $surat->Render();
+        });
     }
 }

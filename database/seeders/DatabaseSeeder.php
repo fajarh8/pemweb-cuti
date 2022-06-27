@@ -122,6 +122,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('root'),
             'nama' => 'Superuser'
         ]);
+
+        $this->call([ConfigSeeder::class]);
     }
 
     protected function randomNik()

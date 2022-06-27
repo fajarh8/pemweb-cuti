@@ -115,7 +115,7 @@
                       </div>
                     <div class="col-12 mb-3">
                       <div class="form-floating">
-                          <input name="password" type="text" class="form-control" id="password" placeholder="password(kosongi apabila tidak ingin mengganti)">
+                          <input name="password" type="password" class="form-control" id="password" placeholder="password(kosongi apabila tidak ingin mengganti)">
                           <label for="password">Password</label>
                       </div>
                   </div>

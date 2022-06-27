@@ -14,6 +14,10 @@
     <li class="nav-item"><span class="nav-link disabled">MANAJEMEN CUTI</span></li>
     <li class="nav-item"><a class="nav-link link-light nav-menu @if (Route::currentRouteName() === 'admin.cuti.buat') active @endif" href="{{ route('admin.cuti.buat') }}"><i class="bi bi-plus-lg me-2"></i> Tambah Pengajuan</a></li>
     <li class="nav-item"><a class="nav-link link-light nav-menu @if (Route::currentRouteName() === 'admin.cuti.list') active @endif" href="{{ route('admin.cuti.list') }}"><i class="bi bi-list-ul me-2"></i> List Pengajuan</a></li>
+    <li class="nav-item"><span class="nav-link disabled">MANAJEMEN PERUSAHAAN</span></li>
+    <li class="nav-item"><a class="nav-link link-light nav-menu @if (Route::currentRouteName() === 'admin.perusahaan.identitas') active @endif" href="{{ route('admin.perusahaan.identitas') }}"><i class="bi bi-building me-2"></i> Identitas Perusahaan</a></li>
+    <li class="nav-item"><a class="nav-link link-light nav-menu @if (Route::currentRouteName() === 'admin.perusahaan.logo') active @endif" href="{{ route('admin.perusahaan.logo') }}"><i class="bi bi-image me-2"></i> Logo Perusahaan</a></li>
+    <li class="nav-item"><a class="nav-link link-light nav-menu @if (Route::currentRouteName() === 'admin.perusahaan.pejabat') active @endif" href="{{ route('admin.perusahaan.pejabat') }}"><i class="bi bi-person me-2"></i> Pejabat Perusahaan</a></li>
     <li class="nav-item"><span class="nav-link disabled">SESI</span></li>
     <li class="nav-item"><a class="nav-link link-light" href="{{ route('admin.logout') }}"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
 @endauth

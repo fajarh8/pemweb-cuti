@@ -48,11 +48,16 @@ Route::prefix('admin')->group(function () {
 
         Route::group([
             'prefix' => 'cuti',
-            'controller' => Admin\CutiController::class
+            'controller' => Admin\Cuti\BuatController::class
         ], function () {
             Route::get('/buat', 'buatCutiHTML')->name('admin.cuti.buat');
             Route::post('/buat', 'buatCutiDB');
+        });
 
+        Route::group([
+            'prefix' => 'cuti',
+            'controller' => Admin\CutiController::class
+        ], function () {
             Route::get('/list', 'listCutiHTML')->name('admin.cuti.list');
 
             Route::get('/detail/{cuti}', 'detailCutiHTML')->name('admin.cuti.detail');
